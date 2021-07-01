@@ -1,7 +1,12 @@
 const express = require('express');
 const app = express();
+const mongoose = require("mongoose");
 const viewRoutes = require('./api/routes/view');
 
+//mongoose connect
+mongoose.connect('mongodb+srv://anshil:'+process.env.MONGO_ATLAS_PASS+'@cluster0.n9dcg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{
+    useMongoClient:true
+})
 //body parser
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
