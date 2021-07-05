@@ -1,17 +1,16 @@
 const express = require('express');
 const router   = express.Router();
+const Users = require('./models/users');
 
 //GET request handler for the VIEW method
-router.get('/',(req,res,next) => {
-
-    const user = {
-        name : req.body.name,
-        role : req.body.role
-    }
-    res.status(200).json({
-        user_id : "Hi ",
-        content : user
-    });
+router.get('/:userId',(req,res,next) => {
+const id = req.params.userId;
+Users.findById(id).exec()
+.then(data =>{
+    res.status(200).json(data);
+}).catch(err =>{
+    req.status(500).json({error: err});
+});
 });
 
 //POSt request handler for the VIEW method
