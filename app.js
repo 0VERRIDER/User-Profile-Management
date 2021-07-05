@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const viewRoute = require('./api/routes/view');
 const createRoute = require('./api/routes/create');
+const cors = require('cors');
 const mongoAtlasUri = 'mongodb+srv://anshil:fBj4ksZh3O1Bgqwj@cluster0.n9dcg.mongodb.net/user_db?retryWrites=true&w=majority';
 //mongoose connect
 try{
@@ -19,13 +20,7 @@ catch(error){
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 //cors fix
-app.use((req,res,next) => {
-    res.header('Access-Control-Allow-Origin',"*");//allowed access to all client
-    res.header('Access-Control-Allow-Headers','Origin,X-Requested-With,Content-Type, Accept, Authorization');
-    res.header('Access-Control-Allow-Methods','OPTIONS, PUT, POST, PATCH, DELETE, GET');
-    res.status(200).json({});
-    
-});
+app.use(cors());
 // main routes
 app.use('/users/view', viewRoute);
 app.use('/users/create', createRoute);
