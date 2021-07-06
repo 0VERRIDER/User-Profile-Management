@@ -11,8 +11,8 @@ const userSchema = mongoose.Schema({
     password : {type: String,required: true},
     role: {type: String,required: true},
     department : {type: String},
-    created_time: {type: Date,required: true,immutable:true},
-    updated_time: {type: Date,required: true}
+    created_time: {type: Date,required: true,immutable:true, default:new Date()},
+    updated_time: {type: Date,required: true, default: new Date()}
 
 });
 
