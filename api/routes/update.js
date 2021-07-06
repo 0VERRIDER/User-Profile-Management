@@ -17,11 +17,11 @@ router.post('/',(req,res,next) => {
         throw "User not found!";
     }
     body['updated_time'] = Date.now();
-
+    delete body.email;
     Users.updateOne({email:email},body).exec()
     .then(data =>{
         res.status(200).json({message : email+"'s account has been updated.",
-    body: body
+    changes: body
     });
 
         
