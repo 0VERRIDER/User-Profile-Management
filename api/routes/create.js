@@ -27,8 +27,7 @@ router.post('/',(req,res,next) => {
         password: req.body.password,
         role: req.body.role,
         department : req.body.department,
-        created_time:  Date.now(),
-        updated_time:  Date.now()
+        
     });
     user.save().then(result => {
        
