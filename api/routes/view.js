@@ -39,7 +39,9 @@ router.post('/',(req,res,next) => {
             hashed_password : data[0]['password'],
             role : data[0]['role'],
             department : data[0]['department'],
-            created_time : data[0]['created_time']
+            created_time : data[0]['created_time'],
+            updated_time:  data[0]['updated_time']
+
             }
         });
     }).catch(err =>{
