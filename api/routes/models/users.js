@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 10;
 
 const userSchema = mongoose.Schema({
-    _id: {type: mongoose.Schema.Types.ObjectId,required: true},
+    _id: {type: mongoose.Schema.Types.ObjectId,required: true,immutable: true},
     first_name: {type: String,required: true},
     middle_name: {type: String},
     last_name: {type: String,required: true},
@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema({
     password : {type: String,required: true},
     role: {type: String,required: true},
     department : {type: String},
-    created_time: {type: Date,required: true},
+    created_time: {type: Date,required: true,immutable:true},
     updated_time: {type: Date,required: true}
 
 });
