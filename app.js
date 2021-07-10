@@ -17,7 +17,15 @@ mongoose.connect(mongoAtlasUri,{
 mongoose.set('useCreateIndex', true);
 }
 catch(error){
+    app.use((req,res,next) =>{
+        res.status(500).json({
+            error:{
+                message : "Something went wrong !",
+                details : error
+            }
+        });
     handleError(error);
+});
 }
 //body parser
 app.use(express.urlencoded({extended:false}));
