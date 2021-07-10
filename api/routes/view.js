@@ -3,26 +3,7 @@ const router   = express.Router();
 const Users = require('./models/users');
 
 //GET request handler for the VIEW method
-router.get('/:email',(req,res,next) => {
-const email = req.params.email;
-Users.find({email:email}).exec()
-.then(data =>{
-    res.status(200).json({
-        data :{
-        first_name : data[0]['first_name'],
-        middle_name : data[0]['middle_name'],
-        last_name : data[0]['last_name'],
-        email :data[0]['email'],
-        hashed_password : data[0]['password'],
-        role : data[0]['role'],
-        department : data[0]['department'],
-        created_time : data[0]['created_time']
-        }
-    });
-}).catch(err =>{
-    res.status(404).json({message: "User not found!",error:err});
-});
-});
+
 
 //POSt request handler for the VIEW method
 
