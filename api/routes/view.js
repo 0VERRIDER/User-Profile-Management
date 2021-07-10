@@ -32,6 +32,7 @@ router.post('/',(req,res,next) => {
     .select('email password first_name middle_name last_name role department created_time updated_time')
     .exec()
     .then(datas =>{
+
         const response = {
             count : datas.length,
             data :datas.map(data => { 
@@ -49,7 +50,9 @@ router.post('/',(req,res,next) => {
             }
        
         })
+        
     };
+    
     res.status(200).json(response);
     }).catch(err =>{
         res.status(404).json({message: "User not found!",error: err});
