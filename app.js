@@ -5,6 +5,7 @@ const viewRoute = require('./api/routes/view');
 const createRoute = require('./api/routes/create');
 const deleteRoute= require('./api/routes/delete');
 const updateRoute= require('./api/routes/update');
+const loginRoute= require('./api/routes/login');
 
 const cors = require('cors');
 const mongoAtlasUri = 'mongodb+srv://anshil:fBj4ksZh3O1Bgqwj@cluster0.n9dcg.mongodb.net/user_db?retryWrites=true&w=majority';
@@ -37,6 +38,7 @@ app.use('/users/view', viewRoute);
 app.use('/users/create', createRoute);
 app.use('/users/delete',deleteRoute);
 app.use('/users/update',updateRoute);
+app.use('/users/login',loginRoute);
 
 
 
