@@ -1,7 +1,10 @@
 const express = require('express');
 const router   = express.Router();
 const Users = require('./models/users');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const jwt = require("jsonwebtoken");
+const Auth = require('./auth/auth');
+
 //GET request handler for the create method
 router.get('/',(req,res,next) => {
 
@@ -32,8 +35,16 @@ router.post('/',(req,res,next) => {
             user.comparePassword(password, function(err, isMatch) {
                 if (err) throw "2";
                 if(isMatch)
-                {res.status(200).json({
-                    message: "User authenticated"
+                {
+                    const token = jwt.sign({
+                        id : user._id,
+                        email: user.email
+                        },"secret",{
+                        expiresIn : "1h"
+                    })
+                    res.status(200).json({
+                    message: "User authenticated",
+                    token : token
                 });}
                 else{
                     res.status(401).json({

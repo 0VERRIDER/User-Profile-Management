@@ -1,13 +1,13 @@
 const express = require('express');
 const router   = express.Router();
 const Users = require('./models/users');
-
+const Auth = require('./auth/auth');
 //GET request handler for the VIEW method
 
 
 //POSt request handler for the VIEW method
 
-router.post('/',(req,res,next) => {
+router.post('/',Auth,(req,res,next) => {
     const email = req.body.email;
     Users.find({email:email})
     .select('email password first_name middle_name last_name role department created_time updated_time')

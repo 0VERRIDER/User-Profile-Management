@@ -2,6 +2,8 @@ const express = require('express');
 const router   = express.Router();
 const Users = require('./models/users');
 const mongoose = require('mongoose')
+const Auth = require('./auth/auth');
+
 //GET request handler for the create method
 router.get('/',(req,res,next) => {
 
@@ -16,7 +18,7 @@ router.get('/',(req,res,next) => {
 
 //POSt request handler for the create method
 
-router.post('/',(req,res,next) => {
+router.post('/',Auth,(req,res,next) => {
     try{
     const user = new Users({
         _id: mongoose.Types.ObjectId(),

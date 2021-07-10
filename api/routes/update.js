@@ -1,8 +1,9 @@
 const express = require('express');
 const router   = express.Router();
 const Users = require('./models/users');
+const Auth = require('./auth/auth');
 
-router.post('/',(req,res,next) => {
+router.post('/',Auth,(req,res,next) => {
     let errorCode=404;
 
     try{
