@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require("mongoose");
+const cookieParser = require('cookie-parser');
 const viewRoute = require('./api/routes/view');
 const createRoute = require('./api/routes/create');
 const deleteRoute= require('./api/routes/delete');
@@ -33,6 +34,8 @@ app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 //cors fix
 app.use(cors());
+//cookie handler
+app.use(cookieParser());
 // main routes
 app.use('/users/view', viewRoute);
 app.use('/users/create', createRoute);
