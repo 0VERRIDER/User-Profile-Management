@@ -11,7 +11,7 @@ router.post('/',Auth,(req,res,next) => {
     try{
     const email = req.body.email;
     const body = req.body;
-    if(body.hasOwnProperty("updated_time") || body.hasOwnProperty("created_time") || body.hasOwnProperty("id") || body.hasOwnProperty("id") ){
+    if(body.hasOwnProperty("updated_time") || body.hasOwnProperty("created_time") || body.hasOwnProperty("id") || body.hasOwnProperty("password") ){
         errorCode = 403;
         throw "Invalid entries found!";
     }
