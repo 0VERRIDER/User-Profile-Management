@@ -8,10 +8,6 @@ const Auth = require('./auth/auth');
 //GET request handler for the create method
 router.get('/',(req,res,next) => {
 
-    const user = {
-        name : req.body.name,
-        role : req.body.role
-    }
     res.status(200).json({
         message : "Hi there, its a POST API",
     });
@@ -38,7 +34,8 @@ router.post('/',(req,res,next) => {
                 {
                     const token = jwt.sign({
                         id : user._id,
-                        email: user.email
+                        email: user.email,
+                        type : user.role
                         },"secret",{
                         expiresIn : "1h"
                     })
