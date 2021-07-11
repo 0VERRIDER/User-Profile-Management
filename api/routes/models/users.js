@@ -7,9 +7,9 @@ const userSchema = mongoose.Schema({
     first_name: {type: String,required: true},
     middle_name: {type: String},
     last_name: {type: String,required: true},
-    email : {type: String,required: true,unique: true, dropDups: true},
+    email : {type: String,required: true,unique: true, dropDups: true, match:/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/},
     password : {type: String,required: true},
-    role: {type: String,required: true},
+    role: {type: String,required: true,default : "user"},
     department : {type: String},
     created_time: {type: Date,required: true,immutable:true, default:new Date()},
     updated_time: {type: Date,required: true, default: new Date()}
