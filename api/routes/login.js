@@ -39,9 +39,9 @@ router.post('/',(req,res,next) => {
                         },"secret",{
                         expiresIn : "1h"
                     })
+                    res.cookie('token', token, { httpOnly: true });
                     res.status(200).json({
-                    message: "User authenticated",
-                    token : token
+                    message: "User authenticated"
                 });}
                 else{
                     res.status(401).json({
