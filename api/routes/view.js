@@ -10,7 +10,7 @@ const Auth = require('./auth/auth');
 router.post('/',Auth,(req,res,next) => {
     const email = req.body.email;
     const all = req.body.all;
-    Users.find(all?req.userData.type == "user"?{role:"user"}: {} :{email:email})
+    Users.find(all?req.userData.type == "user"?{role:"user"}: {} :req.userData.type == "user"?{email:email,role:user}:{email:email})
     .select('email password first_name middle_name last_name role department created_time updated_time')
     .exec()
     .then(datas =>{
