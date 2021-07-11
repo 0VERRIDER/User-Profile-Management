@@ -2,6 +2,8 @@ const express = require('express');
 const router   = express.Router();
 const Users = require('./models/users');
 const Auth = require('./auth/auth');
+const bcrypt = require('bcrypt');
+const SALT_WORK_FACTOR = 10;
 
 router.post('/',Auth,(req,res,next) => {
     let errorCode=404;
@@ -22,6 +24,8 @@ router.post('/',Auth,(req,res,next) => {
         throw "You're not authorized to create an administrator level user !";
     }
     body['updated_time'] = Date.now();
+    delete body.password;
+
     delete body.email;
     Users.updateOne(req.userData.type == "user" ? {email:email,role:"user"}:{email:email,role:"admin"},body).exec()
     .then(data =>{
