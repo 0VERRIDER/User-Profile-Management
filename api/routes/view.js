@@ -26,8 +26,7 @@ router.post('/',Auth,(req,res,next) => {
             role : data['role'],
             department : data['department'],
             created_time : data['created_time'],
-            updated_time:  data['updated_time']
-
+            updated_time:  data['updated_time'],
             }
        
         })
