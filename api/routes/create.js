@@ -29,21 +29,23 @@ router.post('/',Auth,(req,res,next) => {
     });
     user.save().then(result => {
        
-        res.status(201).json({
+        return res.status(201).json({
             message : "Thank you "+user.first_name+". Account registred successfully.",
             result: result
         });
     }).catch( err =>{
-        if(err.keyPattern['email']>0){
-        res.status(500).json({
-            error: "User already exist with the mail id ' "+user.email+ "'"
+        try
+        {res.status(200).json({
+            message : err.keyPattern['email']>0? "User already exist" : "Invalid entries found",
+        
+        });
+       
+}
+catch(err){
+    res.status(200).json({
+            error: "Invalid entries found"
         });
     }
-        else{
-            res.status(500).json({
-                error: err
-            });
-        }
     
     });
    
