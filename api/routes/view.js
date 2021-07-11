@@ -9,12 +9,13 @@ const Auth = require('./auth/auth');
 
 router.post('/',Auth,(req,res,next) => {
     const email = req.body.email;
-    Users.find({email:email})
+    const all = req.body.all;
+    Users.find(all? {} :{email:email})
     .select('email password first_name middle_name last_name role department created_time updated_time')
     .exec()
     .then(datas =>{
-
-        const response = {
+        
+        const response =datas.length>0 ? {
             count : datas.length,
             data :datas.map(data => { 
                 return {
@@ -26,12 +27,13 @@ router.post('/',Auth,(req,res,next) => {
             role : data['role'],
             department : data['department'],
             created_time : data['created_time'],
-            updated_time:  data['updated_time'],
+            updated_time:  data['updated_time']
+
             }
        
         })
         
-    };
+    }:{message: "No user found!"};
     
     res.status(200).json(response);
     }).catch(err =>{
