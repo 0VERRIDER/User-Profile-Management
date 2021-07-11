@@ -38,7 +38,7 @@ app.use('/users/view', viewRoute);
 app.use('/users/create', createRoute);
 app.use('/users/delete',deleteRoute);
 app.use('/users/update',updateRoute);
-app.use('/users/login',loginRoute);
+app.use('/login',loginRoute);
 
 
 
