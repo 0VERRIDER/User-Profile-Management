@@ -17,13 +17,24 @@ router.post('/',Auth,(req,res,next) => {
         errorCode = 404;
         throw "User not found!";
     }
+    if (req.userData.type == "user" && req.body.role == "admin"){
+        errorCode = 403;
+        throw "You're not authorized to create an administrator level user !";
+    }
     body['updated_time'] = Date.now();
     delete body.email;
-    Users.updateOne({email:email},body).exec()
+    Users.updateOne(req.userData.type == "user" ? {email:email,role:"user"}:{email:email,role:"admin"},body).exec()
     .then(data =>{
-        res.status(200).json({message : email+"'s account has been updated.",
-    changes: body
-    });
+        if(data.nModified >0)
+        {res.status(200).json({message : email+"'s account has been updated."    });
+}
+else{
+    Users.find({email:email}).then(dat => {dat.length>0? res.status(403).json({message :"You're not authorized to edit an administrator level user !"
+    }):res.status(404).json({message :"User not found!"})});
+
+}
+    
+
 
         
     }).catch(err =>{

@@ -27,6 +27,12 @@ router.post('/',Auth,(req,res,next) => {
         department : req.body.department,
         
     });
+    if (req.userData.type == "user" && req.body.role == "admin"){
+        res.status(403).json({
+            error:  "You're not authorized to create an administrator level user !"
+        });
+    }
+    else{
     user.save().then(result => {
        
         return res.status(201).json({
@@ -48,7 +54,7 @@ catch(err){
     }
     
     });
-   
+}
 }
 catch(err){
     res.status(500).json({
