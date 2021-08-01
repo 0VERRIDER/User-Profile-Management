@@ -9,7 +9,7 @@ const updateRoute= require('./api/routes/update');
 const loginRoute= require('./api/routes/login');
 
 const cors = require('cors');
-const mongoAtlasUri = 'mongodb+srv://anshil:fBj4ksZh3O1Bgqwj@cluster0.n9dcg.mongodb.net/user_db?retryWrites=true&w=majority';
+const mongoAtlasUri = <MONGODB-URL>;
 //mongoose connect
 try{
 mongoose.connect(mongoAtlasUri,{
